@@ -29,6 +29,23 @@
       </mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
+
+    <mat-list>
+      <h3 mat-subheader>Materias</h3>
+      <mat-list-item *ngFor="let materia of lstMateriasProfesor; last as last">
+        <button mat-button >
+          <mat-icon mat-list-icon>person</mat-icon>
+          <span
+            >{{ materia.name }}
+            
+            </span
+          >
+          
+        </button>
+        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
   </mat-drawer>
 
   <!-- <div class="example-sidenav-content"> -->

@@ -10,6 +10,7 @@ import { Materia } from './model/materia.model';
 import { AlumnosService } from './services/alumnos.service';
 import { CalificacionesService } from './services/calificaciones.service';
 import { MateriasService } from './services/materias.service';
+import { ProfesorService } from './services/profesor.service';
 
 @Component({
   selector: 'app-root',
@@ -35,22 +36,34 @@ export class AppComponent implements OnInit {
     'fecha_registro',
     'acciones',
   ];
+
+
+  lstMateriasProfesor: Materia[] = [];
+  ID_PROFESOR = 1;
+
   constructor(
     private _materiasService: MateriasService,
     private _alumnosService: AlumnosService,
     private _calificacionesService: CalificacionesService,
+    private _profesoresService: ProfesorService,
     private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.obtenerAlumnos();
     this.obtenerMaterias();
+    this.obtenerMateriasProfesor();
 
     // this.frmCalificacion = this.formBuilder.group({
     //   selMateria: [null],
     //   inpCalificacion: [null]
     // });
   }
+
+  public obtenerMateriasProfesor(): void {
+    this._profesoresService.getAllMaterias(this.ID_PROFESOR).subscribe((data) => this.lstMateriasProfesor = data);
+  }
+
 
   public obtenerMaterias(): void {
     this._materiasService.getAllMaterias().subscribe(
